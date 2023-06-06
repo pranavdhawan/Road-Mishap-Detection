@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detection of Road Mishaps</title>
+  <style>
+    /* CSS styles for the web page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(36, 36, 36);
+      padding-top: 10px;
+      line-height: 2.5rem;
+    }
+
+    h1 {
+      text-align: center;
+      background-color: rgb(36, 36, 36);
+      margin: 0;
+      padding: 20px;
+      color: white;
+    }
+
+    h1 > span {
+      background-color: #677aa0;
+      color: black;
+      padding: 4px 10px 4px 10px;
+      border-radius: 10%;
+      margin-left: 3px;
+    }
+
+    .project-description > h2 {
+      padding: 20px 20px 20px 40px;
+      color: white;
+      margin-bottom: 30px;
+      background-color: black;
+    }
+
+    .project-description > p {
+      color: white;
+      padding-left: 40px;
+      padding-right: 20px;
+    }
+
+    .project-description > p > span {
+      background-color: #677aa0;
+      color: black;
+      padding: 4px 10px 4px 10px;
+      border-radius: 10%;
+      margin-left: 3px;
+      font-weight: bold;
+    }
+
+    .m {
+      padding: 20px 20px 20px 40px;
+      color: white;
+      margin-bottom: 30px;
+      background-color: black;
+    }
+
+    .modules {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 40px 0 40px;
+    }
+
+    .module-container {
+      cursor: pointer;
+      padding-bottom: 30px;
+      width: 30vw;
+      height: 40vh;
+      border-radius: 10%;
+      text-align: center;
+      color: white;
+      background-color: black;
+    }
+
+    .module-container > h2 {
+      color: #677aa0;
+    }
+
+    .module > img {
+      max-width: 100%;
+      height: 40vh;
+      border-radius: 10%;
+      margin-bottom: 20px;
+    }
+
+    .btn-container {
+      position: absolute;
+      top: 15px;
+      color: azure;
+      right: 15px;
+    }
+    .module > h2 {
+      font-size: 5rem;
+      line-height: 1.2;
+    }
+  </style>
+  <script>
+    function redirectTo(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+</head>
+<body>
+  <h1>Detection of <span>Road Mishaps</span>
+    <div class="btn-container">
+      <button onclick="redirectTo('/police.html')">Button</button>
+    </div>
+  </h1>
+
+  <div class="project-description">
+    <h2>Project Description</h2>
+    <p>The <span>Detection of Road Mishaps</span> project aims to develop a comprehensive system for detecting and preventing road accidents. The project utilizes Internet of Things (IoT) technology to create three essential modules: Speed Calculator, Gas Detection, and Crash Detection.</p>
+    <p>By combining these modules, the project aims to improve road safety by providing real-time data and alerts to both drivers and authorities, facilitating proactive measures to prevent mishaps.</p>
+  </div>
+
+  <h2 class="m">Modules</h2>
+
+  <div class="modules">
+    <div class="module-container" onclick="redirectTo('https://wokwi.com/projects/366746748629807105')">
+      <div class="module">
+        <img src="images/speed.jpg" alt="Speed Calculator">
+      </div>
+      <h2>Speed Calculator</h2>
+      <p>The Speed Calculator module utilizes sensors and distance calculation algorithms to measure and display the distance between vehicles on the road. This information can help drivers maintain a safe distance and avoid potential collisions.</p>
+    </div>
+    <div class="module-container" onclick="redirectTo('https://www.tinkercad.com/things/bBwrbBcnv4k')">
+      <div class="module">
+        <img src="images/gas.png" alt="Gas Detector">
+      </div>
+      <h2>Gas Detector</h2>
+      <p>The Gas Detection module incorporates gas sensors to detect the presence of any possible leakage within the vehicle.</p>
+    </div>
+    <div class="module-container" onclick="redirectTo('https://www.tinkercad.com/things/hjC9y57r7hT')">
+      <div class="module">
+        <img src="images/vehicleDistance.png" alt="Crash Detection">
+      </div>
+      <h2>Crash Detection</h2>
+      <p>The Crash Detection module utilizes GPS and motion sensors to calculate the speed of the vehicle. By monitoring the vehicle's speed, it assists drivers in adhering to speed limits and avoiding dangerous situations caused by excessive speed.</p>
+    </div>
+  </div>
+
+
+</body>
+</html>

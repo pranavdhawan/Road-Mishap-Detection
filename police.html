@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GUI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* CSS styles for the web app */
+    body, html {
+      box-sizing: content-box;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      margin: 0;
+      background-color: black;
+      padding: 0;
+    }
+
+    .center-heading {
+      text-align: center;
+      background-color: black;
+      color: #F1F6F9;
+      padding: 1%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .notifications {
+      display: inline-block;
+      background-color: #1e335c;
+      left: 5%;
+      flex-basis: 30%;
+      padding: 20px;
+      color: #F1F6F9;
+      border-radius: 20px;
+      width: calc(50% - 30px); /* Adjust the width to fit the left section */
+    }
+
+    .notifications h2 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .map-container {
+      color: white;
+      right: 5%;
+      flex-basis: 70%;
+      padding: 20px;
+      border-radius: 20px;
+      width: calc(50% - 30px); /* Adjust the width to fit the right section */
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    .map-container h2 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .map {
+      height: 100%;
+      background-color: #D21312;
+      margin-bottom: 10px;
+    }
+
+    .a {
+      color: aliceblue;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      background-color: #F1F6F9;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="header">
+    <h1 class="center-heading">Data Metrics</h1>
+    <div class="buttons">
+      <button>Speed Calculator</button>
+      <button>Gas Detection System</button>
+      <button>Crash Detection</button>
+    </div>
+  </div>
+<br><br><br>
+  <div class="container">
+    <div class="notifications">
+      <h2>Incoming Notifications</h2>
+      <ul id="notification-list" class="a"></ul>
+    </div>
+
+    <div class="map-container">
+      <h2>Google Maps Integration</h2>
+      <div id="map" class="map"></div>
+    </div>
+  </div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQFtmx3sNQeX9atnTJcTAFE_4RfetffP4&callback=initMap" async defer></script>
+  <script>
+    // JavaScript code for Google Maps integration and live notifications
+    function initMap() {
+      // Initialize the map
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 28.6139, lng: 77.2090}, // Default center coordinates (Delhi)
+        zoom: 12
+      });
+
+      // Simulate incoming notifications
+      var notificationList = document.getElementById('notification-list');
+      var notifications = [
+        'A car has a crash warning on 5th and Market',
+        'A car has a crash warning on 6th and Market',
+        'There is a gas leak detected',
+        'A car has overspeeded on Cross St.',
+      ];
+
+      setInterval(function() {
+        // Generate a random notification
+        var randomIndex = Math.floor(Math.random() * notifications.length);
+        var notification = notifications[randomIndex];
+
+        // Create a new list item
+        var listItem = document.createElement('li');
+        var link = document.createElement('a');
+        link.href = '#'; // Set the href attribute to "#" for now
+
+        // Generate random coordinates within New Delhi boundaries
+        const minLat = 28.4089;
+        const maxLat = 28.7041;
+        const minLng = 77.1025;
+        const maxLng = 77.3300;
+        const randomLat = Math.random() * (maxLat - minLat) + minLat;
+        const randomLng = Math.random() * (maxLng - minLng) + minLng;
+
+        // Add a click event listener to the hyperlink
+        link.addEventListener('click', function() {
+          // Pan the map to the random location
+          map.panTo({ lat: randomLat, lng: randomLng });
+          map.setZoom(15); // Zoom in for better visibility
+
+          // Create a new div to display the coordinates
+          var coordinatesDiv = document.createElement('div');
+          coordinatesDiv.textContent = 'Coordinates: ' + randomLat + ', ' + randomLng;
+
+          // Append the coordinates div to the notifications section
+          listItem.appendChild(coordinatesDiv);
+        });
+
+        // Set the text content of the hyperlink
+        link.textContent = notification;
+
+        // Append the hyperlink to the list item
+        listItem.appendChild(link);
+
+        // Add the new list item to the notification list
+        notificationList.appendChild(listItem);
+
+        // Remove the oldest notification if there are more than 5 notifications
+        if (notificationList.children.length > 5) {
+          notificationList.removeChild(notificationList.children[0]);
+        }
+      }, 3000); // Simulate a new notification every 3 seconds
+    }
+  </script>
+
+</body>
+</html>
