@@ -7,44 +7,58 @@
   <style>
     /* CSS styles for the web app */
     body, html {
-      box-sizing: content-box;
       font-family: Arial, sans-serif;
       height: 100%;
       margin: 0;
-      background-color: black;
-      padding: 0;
+      padding-bottom: 30vh;
+      background-color: rgb(36, 36, 36);
     }
 
-    .center-heading {
+    h1 {
       text-align: center;
-      background-color: black;
-      color: #F1F6F9;
-      padding: 1%;
+      background-color: rgb(36, 36, 36);
+      margin: 0;
+      padding: 20px;
+      color: white;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: space-evenly;
-      border-radius: 20px;
-      overflow: hidden;
+    h1 > span {
+      background-color: #677aa0;
+      color: black;
+      padding: 4px 10px 4px 10px;
+      border-radius: 10%;
+      margin-left: 3px;
     }
 
-    .container {
+    li > a {
+      font-size: large;
+    }
+
+    .container2 {
+      padding: 50px;
       display: flex;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
+      align-items: stretch;
     }
 
     .notifications {
-      display: inline-block;
+      flex-grow: 1;
+      flex-basis: 30vw;
       background-color: #1e335c;
       left: 5%;
-      flex-basis: 30%;
       padding: 20px;
       color: #F1F6F9;
       border-radius: 20px;
-      width: calc(50% - 30px); /* Adjust the width to fit the left section */
+    }
+
+    .latest-event {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      height: 40vh;
+      background-color: rgb(36, 36, 36);
+      width: 28vw;
+      border-radius: 20px;
+      padding: 20px;
     }
 
     .notifications h2 {
@@ -54,12 +68,14 @@
     }
 
     .map-container {
+      flex-grow: 3;
+      flex-basis: 60vw;
       color: white;
       right: 5%;
-      flex-basis: 70%;
-      padding: 20px;
+      margin-top: 5px;
+      margin-left: 20px;
       border-radius: 20px;
-      width: calc(50% - 30px); /* Adjust the width to fit the right section */
+      height: 100vh;
     }
 
     .center-heading {
@@ -82,43 +98,26 @@
       color: aliceblue;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: space-evenly;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .buttons button {
-      padding: 10px 20px;
-      background-color: #F1F6F9;
-      color: black;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
+    h2 {
+      color: white;
     }
   </style>
 </head>
 <body>
-  
-  <div class="header">
-    <h1 class="center-heading">Data Metrics</h1>
-    <div class="buttons">
-      <button>Speed Calculator</button>
-      <button>Gas Detection System</button>
-      <button>Crash Detection</button>
-    </div>
-  </div>
-<br><br><br>
-  <div class="container">
+  <h1>Real Time <span>Alert System</span></h1>
+
+  <div class="container2">
     <div class="notifications">
       <h2>Incoming Notifications</h2>
       <ul id="notification-list" class="a"></ul>
+      <div class="latest-event" id="latest-event">
+        <h1>Latest Event Details</h1>
+        <div id="infoDiv">
+        </div>
+      </div>
     </div>
 
     <div class="map-container">
-      <h2>Google Maps Integration</h2>
       <div id="map" class="map"></div>
     </div>
   </div>
@@ -162,6 +161,7 @@
 
         // Add a click event listener to the hyperlink
         link.addEventListener('click', function() {
+
           // Pan the map to the random location
           map.panTo({ lat: randomLat, lng: randomLng });
           map.setZoom(15); // Zoom in for better visibility
@@ -172,6 +172,30 @@
 
           // Append the coordinates div to the notifications section
           listItem.appendChild(coordinatesDiv);
+
+          var latestEventDiv = document.getElementById("latest-event");
+          latestEventDiv.style.display = "block";
+
+          var infoDiv = document.getElementById("infoDiv");
+          latestEventDiv.appendChild(infoDiv);
+          infoDiv.innerHTML = "";
+          
+          var name = document.createElement('h3');
+          name.textContent = "John Doe";//add some js here to get names randomly from some list
+          var licensePlate = document.createElement('p');
+          licensePlate.textContent = "UP15AB6969" //same thing
+          var address = document.createElement('p');
+          address.textContent = "Chandni Chowk";//hmm
+          var contactNumber = document.createElement('p');
+          contactNumber.textContent = "9267495823";// all the best
+          var emergencyContactNumber = document.createElement('p');
+          emergencyContactNumber.textContent = "420420420";// you got this
+
+          infoDiv.appendChild(name);
+          infoDiv.appendChild(licensePlate);
+          infoDiv.appendChild(address);
+          infoDiv.appendChild(contactNumber);
+          infoDiv.appendChild(emergencyContactNumber);
         });
 
         // Set the text content of the hyperlink
