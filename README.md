@@ -38,7 +38,9 @@ The Detection of Road Mishaps project aims to develop a comprehensive system for
 ### Crash Detection Module:
 
 *Purpose*: This module is responsible for detecting vehicle collisions or accidents on the road. It plays a crucial role in rapidly alerting authorities and emergency services.
+
 *Electronics*: Accelerometers and impact sensors are typically used to detect sudden changes in vehicle velocity or impacts.
+
 *Firmware Design*: The firmware for this module continuously monitors the accelerometer data. When a significant change in velocity or an impact is detected, it triggers an alarm or sends an emergency notification to authorities and nearby drivers. It should also incorporate GPS data to provide the accident's location
 
 
